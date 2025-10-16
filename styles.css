@@ -306,26 +306,30 @@ h1 {
 .timeline-item {
     position: relative;
     margin-bottom: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
     gap: 30px;
-}
-
-.timeline-item:nth-child(even) {
-    flex-direction: row-reverse;
-}
-
-.timeline-item:nth-child(odd) {
-    flex-direction: row;
+    align-items: center;
 }
 
 .timeline-item:nth-child(even) .timeline-content {
+    grid-column: 1;
     text-align: right;
 }
 
+.timeline-item:nth-child(even) .timeline-icon {
+    grid-column: 2;
+    grid-row: 1;
+}
+
 .timeline-item:nth-child(odd) .timeline-content {
+    grid-column: 3;
     text-align: left;
+}
+
+.timeline-item:nth-child(odd) .timeline-icon {
+    grid-column: 2;
+    grid-row: 1;
 }
 
 .timeline-icon {
@@ -340,8 +344,6 @@ h1 {
     font-size: 1.5rem;
     box-shadow: 0 0 0 4px white, 0 0 0 8px var(--primary);
     z-index: 1;
-    flex-shrink: 0;
-    align-self: center;
 }
 
 .timeline-content {
@@ -349,8 +351,6 @@ h1 {
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-    flex: 1;
-    max-width: 400px;
 }
 
 .timeline-content h3 {
