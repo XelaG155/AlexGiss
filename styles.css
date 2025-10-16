@@ -991,6 +991,15 @@ h1 {
 }
 
 @media (max-width: 480px) {
+    .hero {
+        padding: 40px 20px 250px 20px !important;
+        margin-bottom: 200px !important;
+    }
+
+    .hero-stats {
+        margin-bottom: 200px !important;
+    }
+
     h1 {
         font-size: 2rem;
     }
