@@ -44,7 +44,7 @@ html {
     grid-template-columns: 1fr 500px;
     align-items: center;
     gap: 60px;
-    padding: 80px 80px 0 80px;
+    padding: 0 80px;
     background: white;
     color: var(--dark);
     position: relative;
@@ -190,11 +190,8 @@ h1 {
 
 /* Navigation */
 .nav-bar {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
     background: white;
     box-shadow: 0 2px 20px rgba(0,0,0,0.1);
     display: flex;
@@ -203,9 +200,7 @@ h1 {
     gap: 10px;
     padding: 20px;
     margin-bottom: 0;
-    z-index: 10000;
-    transform: translateZ(0);
-    will-change: transform;
+    z-index: 1000;
 }
 
 .nav-link {
