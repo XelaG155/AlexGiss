@@ -73,12 +73,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const managementCtx = document.getElementById('managementSkillsChart');
 
             if (technicalCtx) {
-                Chart.getChart(technicalCtx)?.destroy();
+                const existingChart = Chart.getChart(technicalCtx);
+                if (existingChart) {
+                    existingChart.destroy();
+                }
                 createTechnicalChart(lang);
             }
 
             if (managementCtx) {
-                Chart.getChart(managementCtx)?.destroy();
+                const existingChart = Chart.getChart(managementCtx);
+                if (existingChart) {
+                    existingChart.destroy();
+                }
                 createManagementChart(lang);
             }
         }
