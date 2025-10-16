@@ -901,9 +901,9 @@ h1 {
 @media (max-width: 768px) {
     .hero {
         grid-template-columns: 1fr;
-        padding: 40px 20px 150px 20px;
+        padding: 40px 20px 200px 20px;
         gap: 40px;
-        margin-bottom: 80px;
+        margin-bottom: 150px;
     }
 
     .hero-image {
@@ -934,7 +934,7 @@ h1 {
 
     .hero-stats {
         grid-template-columns: repeat(2, 1fr);
-        margin-bottom: 100px;
+        margin-bottom: 150px;
     }
 
     .scroll-indicator {
