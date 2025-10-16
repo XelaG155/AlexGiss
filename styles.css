@@ -636,6 +636,11 @@ h1 {
     align-items: center;
     justify-content: center;
     gap: 15px;
+    color: var(--dark);
+}
+
+.interests-section h3 i {
+    color: var(--primary);
 }
 
 .interests {
