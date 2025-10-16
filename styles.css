@@ -190,8 +190,11 @@ h1 {
 
 /* Navigation */
 .nav-bar {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     background: white;
     box-shadow: 0 2px 20px rgba(0,0,0,0.1);
     display: flex;
@@ -225,6 +228,10 @@ h1 {
     padding: 80px 0;
     position: relative;
     z-index: 1;
+}
+
+.section:first-of-type {
+    padding-top: 100px;
 }
 
 .bg-alt {
