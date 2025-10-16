@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize all interactive features
+    initLanguageSwitcher();
     initCharts();
     initQRCode();
     initScrollAnimations();
@@ -9,83 +10,173 @@ document.addEventListener('DOMContentLoaded', function() {
     initNavHighlight();
     initCounterAnimation();
 
-    // Technical Skills Chart
-    function initCharts() {
-        // Technical Skills Radar Chart
-        const technicalCtx = document.getElementById('technicalSkillsChart');
-        if (technicalCtx) {
-            new Chart(technicalCtx, {
-                type: 'radar',
-                data: {
-                    labels: ['ERP Systeme', 'Cloud & Infrastructure', 'AI & Innovation', 'SAP Expertise', 'Blockchain', 'Agile Methods'],
-                    datasets: [{
-                        label: 'Expertise Level',
-                        data: [95, 90, 85, 98, 80, 95],
-                        backgroundColor: 'rgba(37, 99, 235, 0.2)',
-                        borderColor: 'rgba(37, 99, 235, 1)',
-                        borderWidth: 2,
-                        pointBackgroundColor: 'rgba(37, 99, 235, 1)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(37, 99, 235, 1)'
-                    }]
-                },
-                options: {
-                    scales: {
-                        r: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: {
-                                stepSize: 20
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    }
-                }
-            });
+    // Language Switcher
+    function initLanguageSwitcher() {
+        // Get saved language or default to German
+        let currentLang = localStorage.getItem('language') || 'de';
+
+        // Apply saved language
+        applyLanguage(currentLang);
+
+        // Setup flag click handlers
+        const deFlagButton = document.getElementById('lang-de');
+        const enFlagButton = document.getElementById('lang-en');
+
+        if (deFlagButton) {
+            deFlagButton.addEventListener('click', () => switchLanguage('de'));
         }
 
-        // Management Skills Chart
-        const managementCtx = document.getElementById('managementSkillsChart');
-        if (managementCtx) {
-            new Chart(managementCtx, {
-                type: 'polarArea',
-                data: {
-                    labels: ['Leadership', 'Projektmanagement', 'Budget Management', 'Team Building', 'Strategisches Denken', 'Change Management'],
-                    datasets: [{
-                        data: [98, 95, 92, 96, 94, 93],
-                        backgroundColor: [
-                            'rgba(37, 99, 235, 0.7)',
-                            'rgba(124, 58, 237, 0.7)',
-                            'rgba(236, 72, 153, 0.7)',
-                            'rgba(16, 185, 129, 0.7)',
-                            'rgba(245, 158, 11, 0.7)',
-                            'rgba(99, 102, 241, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(37, 99, 235, 1)',
-                            'rgba(124, 58, 237, 1)',
-                            'rgba(236, 72, 153, 1)',
-                            'rgba(16, 185, 129, 1)',
-                            'rgba(245, 158, 11, 1)',
-                            'rgba(99, 102, 241, 1)'
-                        ],
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    plugins: {
-                        legend: {
-                            position: 'bottom'
-                        }
+        if (enFlagButton) {
+            enFlagButton.addEventListener('click', () => switchLanguage('en'));
+        }
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('language', lang);
+            applyLanguage(lang);
+
+            // Update charts with new language
+            updateCharts(lang);
+        }
+
+        function applyLanguage(lang) {
+            // Update active flag styling
+            document.querySelectorAll('.lang-flag').forEach(flag => {
+                flag.classList.remove('active');
+            });
+
+            const activeFlag = document.getElementById(`lang-${lang}`);
+            if (activeFlag) {
+                activeFlag.classList.add('active');
+            }
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-de][data-en]').forEach(element => {
+                const translation = element.getAttribute(`data-${lang}`);
+                if (translation) {
+                    // Check if it's a placeholder attribute
+                    if (element.hasAttribute('placeholder')) {
+                        element.setAttribute('placeholder', translation);
+                    } else {
+                        element.textContent = translation;
                     }
                 }
             });
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
         }
+
+        function updateCharts(lang) {
+            // Reinitialize charts with new language
+            const technicalCtx = document.getElementById('technicalSkillsChart');
+            const managementCtx = document.getElementById('managementSkillsChart');
+
+            if (technicalCtx) {
+                Chart.getChart(technicalCtx)?.destroy();
+                createTechnicalChart(lang);
+            }
+
+            if (managementCtx) {
+                Chart.getChart(managementCtx)?.destroy();
+                createManagementChart(lang);
+            }
+        }
+    }
+
+    // Technical Skills Chart
+    function initCharts() {
+        const currentLang = localStorage.getItem('language') || 'de';
+        createTechnicalChart(currentLang);
+        createManagementChart(currentLang);
+    }
+
+    function createTechnicalChart(lang) {
+        const technicalCtx = document.getElementById('technicalSkillsChart');
+        if (!technicalCtx) return;
+
+        const labels = {
+            de: ['ERP Systeme', 'Cloud & Infrastructure', 'AI & Innovation', 'SAP Expertise', 'Blockchain', 'Agile Methods'],
+            en: ['ERP Systems', 'Cloud & Infrastructure', 'AI & Innovation', 'SAP Expertise', 'Blockchain', 'Agile Methods']
+        };
+
+        new Chart(technicalCtx, {
+            type: 'radar',
+            data: {
+                labels: labels[lang],
+                datasets: [{
+                    label: lang === 'de' ? 'Expertise Level' : 'Expertise Level',
+                    data: [95, 90, 85, 98, 80, 95],
+                    backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                    borderColor: 'rgba(37, 99, 235, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(37, 99, 235, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(37, 99, 235, 1)'
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            stepSize: 20
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    }
+
+    function createManagementChart(lang) {
+        const managementCtx = document.getElementById('managementSkillsChart');
+        if (!managementCtx) return;
+
+        const labels = {
+            de: ['Leadership', 'Projektmanagement', 'Budget Management', 'Team Building', 'Strategisches Denken', 'Change Management'],
+            en: ['Leadership', 'Project Management', 'Budget Management', 'Team Building', 'Strategic Thinking', 'Change Management']
+        };
+
+        new Chart(managementCtx, {
+            type: 'polarArea',
+            data: {
+                labels: labels[lang],
+                datasets: [{
+                    data: [98, 95, 92, 96, 94, 93],
+                    backgroundColor: [
+                        'rgba(37, 99, 235, 0.7)',
+                        'rgba(124, 58, 237, 0.7)',
+                        'rgba(236, 72, 153, 0.7)',
+                        'rgba(16, 185, 129, 0.7)',
+                        'rgba(245, 158, 11, 0.7)',
+                        'rgba(99, 102, 241, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(37, 99, 235, 1)',
+                        'rgba(124, 58, 237, 1)',
+                        'rgba(236, 72, 153, 1)',
+                        'rgba(16, 185, 129, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(99, 102, 241, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
     }
 
     // QR Code Generation
