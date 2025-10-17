@@ -462,20 +462,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Mobile menu enhancement
+    // Ensure mobile navigation remains visible
     if (window.innerWidth <= 768) {
         const navBar = document.querySelector('.nav-bar');
-        let lastScroll = 0;
-
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            if (currentScroll > lastScroll && currentScroll > 100) {
-                navBar.style.transform = 'translateY(-100%)';
-            } else {
-                navBar.style.transform = 'translateY(0)';
-            }
-            lastScroll = currentScroll;
-        });
+        if (navBar) {
+            navBar.style.transform = 'translateY(0)';
+        }
     }
 
     // Print button functionality
