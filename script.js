@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Setup flag click handlers
         const deFlagButton = document.getElementById('lang-de');
         const enFlagButton = document.getElementById('lang-en');
+        const frFlagButton = document.getElementById('lang-fr');
+        const esFlagButton = document.getElementById('lang-es');
 
         if (deFlagButton) {
             deFlagButton.addEventListener('click', () => switchLanguage('de'));
@@ -28,6 +30,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (enFlagButton) {
             enFlagButton.addEventListener('click', () => switchLanguage('en'));
+        }
+
+        if (frFlagButton) {
+            frFlagButton.addEventListener('click', () => switchLanguage('fr'));
+        }
+
+        if (esFlagButton) {
+            esFlagButton.addEventListener('click', () => switchLanguage('es'));
         }
 
         function switchLanguage(lang) {
@@ -103,7 +113,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const labels = {
             de: ['ERP Systeme', 'Cloud & Infrastructure', 'AI & Innovation', 'SAP Expertise', 'Blockchain', 'Agile Methods'],
-            en: ['ERP Systems', 'Cloud & Infrastructure', 'AI & Innovation', 'SAP Expertise', 'Blockchain', 'Agile Methods']
+            en: ['ERP Systems', 'Cloud & Infrastructure', 'AI & Innovation', 'SAP Expertise', 'Blockchain', 'Agile Methods'],
+            fr: ['Systèmes ERP', 'Cloud & Infrastructure', 'IA & Innovation', 'Expertise SAP', 'Blockchain', 'Méthodes Agile'],
+            es: ['Sistemas ERP', 'Cloud & Infraestructura', 'IA & Innovación', 'Experiencia SAP', 'Blockchain', 'Métodos Ágiles']
         };
 
         new Chart(technicalCtx, {
@@ -147,7 +159,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const labels = {
             de: ['Leadership', 'Projektmanagement', 'Budget Management', 'Team Building', 'Strategisches Denken', 'Change Management'],
-            en: ['Leadership', 'Project Management', 'Budget Management', 'Team Building', 'Strategic Thinking', 'Change Management']
+            en: ['Leadership', 'Project Management', 'Budget Management', 'Team Building', 'Strategic Thinking', 'Change Management'],
+            fr: ['Leadership', 'Gestion de Projet', 'Gestion Budgétaire', 'Team Building', 'Pensée Stratégique', 'Gestion du Changement'],
+            es: ['Liderazgo', 'Gestión de Proyectos', 'Gestión Presupuestaria', 'Team Building', 'Pensamiento Estratégico', 'Gestión del Cambio']
         };
 
         new Chart(managementCtx, {
