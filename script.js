@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, observerOptions);
 
         // Observe all cards and timeline items
-        const animatedElements = document.querySelectorAll('.about-card, .timeline-item, .skill-card, .cert-card, .personality-card, .game-card, .contact-card');
+        const animatedElements = document.querySelectorAll('.about-card, .timeline-item, .skill-card, .case-study-card, .cert-card, .personality-card, .game-card, .contact-card');
         animatedElements.forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
