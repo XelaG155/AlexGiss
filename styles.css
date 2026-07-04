@@ -286,6 +286,16 @@ h1 {
     z-index: 100;
 }
 
+.section-subtitle {
+    display: block;
+    text-align: center;
+    max-width: 700px;
+    margin: -25px auto 45px;
+    color: var(--gray);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
 /* About Section */
 .about-grid {
     display: grid;
@@ -421,6 +431,53 @@ h1 {
     padding: 5px 15px;
     border-radius: 20px;
     font-size: 0.85rem;
+}
+
+/* AI Projects / Case Studies Section */
+.case-study-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.case-study-card {
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-top: 4px solid transparent;
+    border-image: var(--gradient-2) 1;
+    transition: all 0.3s ease;
+}
+
+.case-study-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+}
+
+.case-study-icon {
+    font-size: 2.2rem;
+    color: var(--secondary);
+    margin-bottom: 18px;
+}
+
+.case-study-card h3 {
+    color: var(--dark);
+    margin-bottom: 15px;
+    font-size: 1.25rem;
+}
+
+.case-study-card p {
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 5px;
+}
+
+.case-study-note {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--gray);
+    font-style: italic;
 }
 
 /* Skills Section */
@@ -771,6 +828,19 @@ h1 {
 
 .achievement i {
     font-size: 1.5rem;
+}
+
+.achievement-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.achievement-detail {
+    font-size: 0.78rem;
+    font-weight: 400;
+    opacity: 0.85;
+    line-height: 1.4;
 }
 
 .career-stats {
